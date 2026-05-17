@@ -1,18 +1,17 @@
-5. The music signal has frequency components in the audio frequency range 20Hz to 20000Hz of the electromagnetic spectrum. Record or use the recorded music samples of different instrument.
-
-
 clc;
 clear;
 close all;
 
-% Load an audio file (replace with your own .wav file)
-[instrument, Fs] = audioread('piano.wav');   % Example: piano
-instrument = instrument(:,1);                % Use one channel if stereo
+% Load audio file
+[instrument, Fs] = audioread('piano.wav');
 
-% Time vector for plotting
-t = (0:length(instrument)-1)/Fs;
+% If stereo, use only one channel
+instrument = instrument(:,1);
 
-% Plot time-domain signal
+% Time vector
+t = (0:length(instrument)-1) / Fs;
+
+% Plot Time-Domain Signal
 figure;
 
 subplot(3,1,1);
@@ -22,21 +21,24 @@ xlabel('Time (s)');
 ylabel('Amplitude');
 grid on;
 
-% Compute FFT
+% FFT Computation
 N = length(instrument);
+
+% Frequency vector
 f = (-N/2:N/2-1) * (Fs/N);
+
+% FFT and shift zero frequency to center
 X = fftshift(fft(instrument));
 
 % Amplitude Spectrum
 amplitude = abs(X);
 
-% Frequency vector
 subplot(3,1,2);
 plot(f, amplitude);
 title('Amplitude Spectrum');
 xlabel('Frequency (Hz)');
 ylabel('|X(f)|');
-xlim([0 Fs/2]);    % Focus on positive frequencies
+xlim([0 Fs/2]);   % Positive frequencies only
 grid on;
 
 % Phase Spectrum
