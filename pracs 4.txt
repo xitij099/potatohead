@@ -1,0 +1,49 @@
+4. find the convolution integral of Unit step and exponential and write a program to sketch the out response of the system. Also verify the commutative property of convolution integral 
+
+
+Program
+clc;
+clear;
+close all;
+
+% Parameters
+a = 2;                    % Exponential decay rate
+t = 0:0.01:5;             % Time vector
+
+% Signals
+u = ones(size(t));        % Unit step function
+x = exp(-a * t);          % Exponential signal
+
+% Convolution
+y1 = conv(u, x, 'same') * 0.01;   % Convolution (u * x) with dt = 0.01
+y2 = conv(x, u, 'same') * 0.01;   % Convolution (x * u) to test commutativity
+
+% Analytical result
+y_analytical = (1 - exp(-a * t)) / a;
+
+% Plotting results
+figure;
+
+subplot(3,1,1);
+plot(t, y1, 'b', 'LineWidth', 1.5);
+title('Convolution y(t) = u(t) * e^{-a t}');
+xlabel('Time t');
+ylabel('y(t)');
+grid on;
+
+subplot(3,1,2);
+plot(t, y2, 'r--', 'LineWidth', 1.5);
+title('Convolution y(t) = e^{-a t} * u(t) (Commutative Check)');
+xlabel('Time t');
+ylabel('y(t)');
+grid on;
+
+subplot(3,1,3);
+plot(t, y1, 'b', t, y2, 'r--', t, y_analytical, 'g', 'LineWidth', 1.5);
+
+legend('u * x', 'x * u', 'Analytical');
+title('Verification: Numerical vs Analytical & Commutative Property');
+
+xlabel('Time t');
+ylabel('y(t)');
+grid on;

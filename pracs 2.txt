@@ -1,0 +1,48 @@
+2. Write the codes to plot the following signals also simulate the signals:
+(a) sin(200πt),
+(b) sin(200πt+π/6),
+(c) sin(200πt-π/6),
+(d) cos(200πt),
+(e) sin(200πt+π/4),
+(f) cos(200πt- π/4)
+
+clc;
+clear;
+close all;
+
+fs = 2000;                 % Sampling frequency
+t = 0:1/fs:0.05;          % Time vector (50 ms)
+x1 = sin(200*pi*t);
+figure;
+plot(t, x1);
+title('sin(200\pi t)');
+xlabel('Time'); ylabel('Amplitude');
+x2 = sin(200*pi*t + pi/6);
+figure;
+plot(t, x2);
+title('sin(200\pi t + \pi/6)');
+xlabel('Time'); ylabel('Amplitude');
+
+x3 = sin(200*pi*t - pi/6);
+figure;
+plot(t, x3);
+title('sin(200\pi t - \pi/6)');
+xlabel('Time'); ylabel('Amplitude');
+
+x4 = cos(200*pi*t);
+figure;
+plot(t, x4);
+title('cos(200\pi t)');
+xlabel('Time'); ylabel('Amplitude');
+
+x5 = sin(200*pi*t + pi/4);
+figure;
+plot(t, x5);
+title('sin(200\pi t + \pi/4)');
+xlabel('Time'); ylabel('Amplitude');
+
+x6 = cos(200*pi*t - pi/4);
+figure;
+plot(t, x6);
+title('cos(200\pi t - \pi/4)');
+xlabel('Time'); ylabel('Amplitude');

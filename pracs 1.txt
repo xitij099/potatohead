@@ -1,0 +1,35 @@
+1. Generate and plot the following signals in time domain and also sketch its amplitude and phase
+spectrum. Verify the result:
+Impulse
+Unit Step
+Exponential
+Unit ramp
+Sinc
+Rectangular
+
+
+
+clc;
+clear;
+close all;
+
+fs = 1000;              % Sampling frequency
+t = -1:1/fs:1;          % Time vector
+N = length(t);          % Number of samples
+f = (-N/2:N/2-1)*(fs/N); % Frequency axis for spectrum
+x = zeros(size(t));
+x(t==0) = 1;     % Approximate impulse
+
+figure;
+subplot(3,1,1);
+plot(t,x);
+title('Impulse Signal');
+X = fftshift(fft(x));
+
+subplot(3,1,2);
+plot(f, abs(X));
+title('Amplitude Spectrum');
+
+subplot(3,1,3);
+plot(f, angle(X));
+title('Phase Spectrum');

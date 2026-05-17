@@ -1,0 +1,41 @@
+3. Develop codes to simulate, and plot the results for an exponential signal: x(t) = k e−atu(t)for the cases: (a) k = 1 and a = 0.35 (b) k =1.5 and a= -0.45
+
+
+% Exponential Signal: x(t) = k*exp(-a*t)*u(t)
+
+clear all;
+close all;
+clc;
+
+% Time vector
+t = -5:0.01:10;
+
+% Unit step function
+u = (t >= 0);
+
+%% Case (a): k = 1, a = 0.35
+k1 = 5;
+a1 = 0.5;
+
+x1 = k1 * exp(-a1 * t) .* u;
+
+figure;
+plot(t, x1, 'LineWidth', 2);
+grid on;
+xlabel('Time (t)');
+ylabel('x(t)');
+title('Exponential Signal: k = 5, a = 0.5');
+
+
+%% Case (b): k = 1.5, a = -0.45
+k2 = 100;
+a2 = -0.5;
+
+x2 = k2 * exp(-a2 * t) .* u;
+
+figure;
+plot(t, x2, 'LineWidth', 2);
+grid on;
+xlabel('Time (t)');
+ylabel('x(t)');
+title('Exponential Signal: k = 100, a = -0.5');
